@@ -1,0 +1,36 @@
+html,body{
+    margin: 0;
+    padding: 0;
+}
+body::-webkit-scrollbar{
+    width: 0;
+}
+.logoBox{
+    width: 50px;
+    height: 50px;
+}
+.welcomeToLondonBridge{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ec5555;
+    color: #ffffff;
+    float: left;
+}
+.welcomeText{
+    font-size: 120px;
+    font-weight: bold;
+    white-space: nowrap;
+    letter-spacing: 20px;
+    filter: blur(100px);
+    opacity: 0;
+    transition: all 0.8s ease;
+}
+.container{
+    width: 100%;
+    height:100vh;
+    float: left;
+    background: red;
+}
