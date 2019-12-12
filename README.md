@@ -1,2 +1,24 @@
-# voiNo
-点击展开是变色放大还能拖拽的悬浮按钮你喜欢吗(现在还可以弹弹小曲)
+# voino
+
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
