@@ -32,11 +32,22 @@ keyboardGuide.onclick = function () {
     setTimeout(() => keyboardGuide.style.zIndex = "-1", 500);
 };
 
+// 辅助样式
+function _style(i) {
+    keyBox[i].style.background = oColors[i];
+    keyBigBox[i].style.cssText = "width: 100px; height: 100px;";
+    setTimeout(function () {
+        keyBox[i].style.background = "";
+        keyBigBox[i].style.cssText = "width: ''; height: '';";
+    }, 300);
+    audioViews(i, oColors[i]);
+}
+
 // 开始循环不知道做什么
 for (let i = 0; i < keyBox.length; ++i) {
     keyBigBox[i].onmouseenter = () => {
         makeSound(i);
-        voCursorRelativeBox.style.cssText = "width: '30px'; height: '30px';";
+        voCursorRelativeBox.style.cssText = "width: 30px; height: 30px;";
         _style(i);
     };
     keyBigBox[i].onmouseout = () => voCursorRelativeBox.style.cssText = "width: ''; height: '';";
@@ -45,30 +56,20 @@ for (let i = 0; i < keyBox.length; ++i) {
 document.onkeydown = (event) => {
     keyboardGuide.style.opacity = "0";
     setTimeout(() => keyboardGuide.style.zIndex = "-1", 500);
-    // -------
     let e = event || window.event || arguments.callee.caller.arguments[0];
-
     if (47 <= event.keyCode && event.keyCode <= 58) keyOnPress(event.keyCode === 48 ? 58 : event.keyCode);
-
-    // if (passwordInpu.toString() === publicPassWord.toString()) {
-    //     window.parent.parentWrapBtn.style.opacity = "0";
-    //     vPianoEnd1.style.left = "0%";
-    //     vPianoEnd1.addEventListener("transitionend", vP2);
-    //
-    //     function vP2() {
-    //         vPianoEnd2.style.left = "0%";
-    //         vPianoEnd2.addEventListener("transitionend", vP3)
-    //     }
-    //
-    //     function vP3() {
-    //         vPianoEnd3.style.left = "0%";
-    //         vPianoEnd3.addEventListener("transitionend", vPianoEndHref)
-    //     }
-    //
-    //     function vPianoEndHref() {
-    //         parent.window.location.href = "lundonBridge.html";
-    //     }
-    // }
+    console.log(passwordInpu.toString(), '__', publicPassWord.toString());
+    if (passwordInpu.toString() === publicPassWord.toString()) {
+        window.parent.parentWrapBtn.style.opacity = "0";
+        vPianoEnd1.style.left = "0%";
+        vPianoEnd1.addEventListener("transitionend", () => {
+            vPianoEnd2.style.left = "0%";
+            vPianoEnd2.addEventListener("transitionend", () => {
+                vPianoEnd3.style.left = "0%";
+                vPianoEnd3.addEventListener("transitionend", () => parent.window.location.href = "lundonBridge.html");
+            });
+        });
+    }
 };
 
 // 应该是初始化api接口
@@ -76,6 +77,7 @@ let ctx = null;
 let setContent = () => ctx = !ctx ? new AudioContext() : ctx;
 
 function makeSound(index) {
+    console.log(index);
     // 获得音频上下文
     setContent();
     //得到音频振荡器
@@ -97,17 +99,6 @@ function makeSound(index) {
     passwordInpu.push(index);
 }
 
-// 辅助样式
-function _style(i) {
-    keyBox[i].style.background = oColors[i];
-    keyBigBox[i].style.cssText = "width: '100px'; height: '100px';";
-    setTimeout(function () {
-        keyBox[i].style.background = "";
-        keyBigBox[i].style.cssText = "width: ''; height: '';";
-    }, 300);
-    audioViews(i, oColors[i]);
-}
-
 // 不知道在计算什么
 function keyOnPress(index) {
     index = index - 49;
@@ -122,19 +113,12 @@ function audioViews(index, bgColor) {
     function style_(em, ls, i, is = false) {
         em.style.backgroundColor = is ? '' : bgColor;
         em.style.height = is ? '' : ls === 1 ? 80 / i + "%" : 100 + "%";
+        if (!is) setTimeout(() => style_(em, ls, i, true), 200);
     }
 
     for (let i = 0; i < 16; i++) {
         style_(audioViewsLine[oIndex], 0, i);
         style_(audioViewsLine[oIndex + i], 1, i);
         style_(audioViewsLine[oIndex - i], 1, i);
-        setTimeout(function () {
-            style_(audioViewsLine[oIndex], 0, i, true);
-            style_(audioViewsLine[oIndex + i], 1, i, true);
-            style_(audioViewsLine[oIndex - i], 1, i, true);
-        }, 200)
     }
 }
-
-// 监控报错
-// window.onerror = null;
