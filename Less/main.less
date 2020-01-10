@@ -1,0 +1,159 @@
+@colors: #2fe1bd, #dd5578, #9d71d4, #6b6c9a, #6cacf5, #6cf5c9, #f5da47, #f58947, #ffcaad, #47f5da, #47f5da;
+#App {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: none;
+    z-index: 1000;
+    position: fixed;
+    background-size: cover;
+    background-color: #f7f7f7;
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+
+.voiNo {
+    &-mouse {
+        width: 28px;
+        height: 28px;
+        display: none;
+        z-index: 10000;
+        position: fixed;
+        pointer-events: none;
+        border: 2px solid #fff;
+        box-sizing: border-box;
+        mix-blend-mode: difference;
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    &-mouse::before {
+        top: 50%;
+        left: 50%;
+        width: 15px;
+        content: "";
+        height: 15px;
+        position: absolute;
+        background-color: #fff;
+        transform: translate(-50%, -50%);
+    }
+
+    &-container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+
+        &-box {
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            position: absolute;
+            padding: 50px 100px;
+            align-items: center;
+            flex-flow: row nowrap;
+            box-sizing: border-box;
+            justify-content: space-around;
+            transform: translate(-50%, -50%);
+
+            > .box-mouseover {
+                width: 100px;
+                height: 100px;
+                transform: rotate(45deg);
+            }
+
+            .box-colors(@i) when (@i < length(@colors)) {
+                > .colors-@{i}::before {
+                    background-color: extract(@colors, @i);
+                }
+                .box-colors(@i+1);
+            }
+            .box-colors(1);
+
+            > div {
+                width: 60px;
+                height: 60px;
+                display: flex;
+                position: relative;
+                align-items: center;
+                justify-content: center;
+                border: 5px solid black;
+                transform: rotate(45deg);
+                transition: width 0.5s ease, height 0.5s ease;
+            }
+
+            > div::before {
+                top: 50%;
+                left: 50%;
+                content: "";
+                width: 40px;
+                height: 40px;
+                position: absolute;
+                transition: all 0.5s ease;
+                background-color: #ec5555;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        &-list {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 150px;
+
+            > div[class^='colors-'] {
+                width: 10%;
+                float: left;
+                height: 100%;
+                display: flex;
+                position: relative;
+                align-items: flex-end;
+
+                > div {
+                    height: 0;
+                    margin-left: 1px;
+                    transition: all 0.3s;
+                    width: calc(100% / 31 - 1px);
+                }
+            }
+
+            > .colors-block {
+                .box-colors(@i, @k: 16 - @i) when (@i <= 16) {
+                    .for-if(@key) when (@key = 16) {
+                        > div:nth-child(@{i}),
+                        > div:nth-last-child(@{i}) {
+                            height: 100%;
+                        }
+                    }
+                    .for-if(@key,@key_: 80% / @key) when (@key < 16) {
+                        > div:nth-child(@{k}),
+                        > div:nth-last-child(@{k}) {
+                            height: @key_;
+                        }
+                    }
+                    .for-if(@i);
+                    .box-colors(@i+1);
+                }
+                .box-colors(1);
+            }
+
+            .box-colors(@i) when (@i < length(@colors)) {
+                > .colors-@{i} > div {
+                    background-color: extract(@colors, @i);
+                }
+                .box-colors(@i+1);
+            }
+            .box-colors(1);
+        }
+    }
+}
+
+.mouse-block {
+    display: block;
+}
+
+.mouse-click::before {
+    background-color: #18f7b5;
+}

@@ -1,0 +1,233 @@
+#App {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: none;
+  z-index: 1000;
+  position: fixed;
+  background-size: cover;
+  background-color: #f7f7f7;
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+.voiNo-mouse {
+  width: 28px;
+  height: 28px;
+  display: none;
+  z-index: 10000;
+  position: fixed;
+  pointer-events: none;
+  border: 2px solid #fff;
+  box-sizing: border-box;
+  mix-blend-mode: difference;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.voiNo-mouse::before {
+  top: 50%;
+  left: 50%;
+  width: 15px;
+  content: "";
+  height: 15px;
+  position: absolute;
+  background-color: #fff;
+  transform: translate(-50%, -50%);
+}
+.voiNo-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.voiNo-container-box {
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: absolute;
+  padding: 50px 100px;
+  align-items: center;
+  flex-flow: row nowrap;
+  box-sizing: border-box;
+  justify-content: space-around;
+  transform: translate(-50%, -50%);
+}
+.voiNo-container-box > .box-mouseover {
+  width: 100px;
+  height: 100px;
+  transform: rotate(45deg);
+}
+.voiNo-container-box > .colors-1::before {
+  background-color: #2fe1bd;
+}
+.voiNo-container-box > .colors-2::before {
+  background-color: #dd5578;
+}
+.voiNo-container-box > .colors-3::before {
+  background-color: #9d71d4;
+}
+.voiNo-container-box > .colors-4::before {
+  background-color: #6b6c9a;
+}
+.voiNo-container-box > .colors-5::before {
+  background-color: #6cacf5;
+}
+.voiNo-container-box > .colors-6::before {
+  background-color: #6cf5c9;
+}
+.voiNo-container-box > .colors-7::before {
+  background-color: #f5da47;
+}
+.voiNo-container-box > .colors-8::before {
+  background-color: #f58947;
+}
+.voiNo-container-box > .colors-9::before {
+  background-color: #ffcaad;
+}
+.voiNo-container-box > .colors-10::before {
+  background-color: #47f5da;
+}
+.voiNo-container-box > div {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid black;
+  transform: rotate(45deg);
+  transition: width 0.5s ease, height 0.5s ease;
+}
+.voiNo-container-box > div::before {
+  top: 50%;
+  left: 50%;
+  content: "";
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  transition: all 0.5s ease;
+  background-color: #ec5555;
+  transform: translate(-50%, -50%);
+}
+.voiNo-container-list {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 150px;
+}
+.voiNo-container-list > div[class^='colors-'] {
+  width: 10%;
+  float: left;
+  height: 100%;
+  display: flex;
+  position: relative;
+  align-items: flex-end;
+}
+.voiNo-container-list > div[class^='colors-'] > div {
+  height: 0;
+  margin-left: 1px;
+  transition: all 0.3s;
+  width: calc(100% / 31 - 1px);
+}
+.voiNo-container-list > .colors-block > div:nth-child(15),
+.voiNo-container-list > .colors-block > div:nth-last-child(15) {
+  height: 80%;
+}
+.voiNo-container-list > .colors-block > div:nth-child(14),
+.voiNo-container-list > .colors-block > div:nth-last-child(14) {
+  height: 40%;
+}
+.voiNo-container-list > .colors-block > div:nth-child(13),
+.voiNo-container-list > .colors-block > div:nth-last-child(13) {
+  height: 26.66666667%;
+}
+.voiNo-container-list > .colors-block > div:nth-child(12),
+.voiNo-container-list > .colors-block > div:nth-last-child(12) {
+  height: 20%;
+}
+.voiNo-container-list > .colors-block > div:nth-child(11),
+.voiNo-container-list > .colors-block > div:nth-last-child(11) {
+  height: 16%;
+}
+.voiNo-container-list > .colors-block > div:nth-child(10),
+.voiNo-container-list > .colors-block > div:nth-last-child(10) {
+  height: 13.33333333%;
+}
+.voiNo-container-list > .colors-block > div:nth-child(9),
+.voiNo-container-list > .colors-block > div:nth-last-child(9) {
+  height: 11.42857143%;
+}
+.voiNo-container-list > .colors-block > div:nth-child(8),
+.voiNo-container-list > .colors-block > div:nth-last-child(8) {
+  height: 10%;
+}
+.voiNo-container-list > .colors-block > div:nth-child(7),
+.voiNo-container-list > .colors-block > div:nth-last-child(7) {
+  height: 8.88888889%;
+}
+.voiNo-container-list > .colors-block > div:nth-child(6),
+.voiNo-container-list > .colors-block > div:nth-last-child(6) {
+  height: 8%;
+}
+.voiNo-container-list > .colors-block > div:nth-child(5),
+.voiNo-container-list > .colors-block > div:nth-last-child(5) {
+  height: 7.27272727%;
+}
+.voiNo-container-list > .colors-block > div:nth-child(4),
+.voiNo-container-list > .colors-block > div:nth-last-child(4) {
+  height: 6.66666667%;
+}
+.voiNo-container-list > .colors-block > div:nth-child(3),
+.voiNo-container-list > .colors-block > div:nth-last-child(3) {
+  height: 6.15384615%;
+}
+.voiNo-container-list > .colors-block > div:nth-child(2),
+.voiNo-container-list > .colors-block > div:nth-last-child(2) {
+  height: 5.71428571%;
+}
+.voiNo-container-list > .colors-block > div:nth-child(1),
+.voiNo-container-list > .colors-block > div:nth-last-child(1) {
+  height: 5.33333333%;
+}
+.voiNo-container-list > .colors-block > div:nth-child(16),
+.voiNo-container-list > .colors-block > div:nth-last-child(16) {
+  height: 100%;
+}
+.voiNo-container-list > .colors-1 > div {
+  background-color: #2fe1bd;
+}
+.voiNo-container-list > .colors-2 > div {
+  background-color: #dd5578;
+}
+.voiNo-container-list > .colors-3 > div {
+  background-color: #9d71d4;
+}
+.voiNo-container-list > .colors-4 > div {
+  background-color: #6b6c9a;
+}
+.voiNo-container-list > .colors-5 > div {
+  background-color: #6cacf5;
+}
+.voiNo-container-list > .colors-6 > div {
+  background-color: #6cf5c9;
+}
+.voiNo-container-list > .colors-7 > div {
+  background-color: #f5da47;
+}
+.voiNo-container-list > .colors-8 > div {
+  background-color: #f58947;
+}
+.voiNo-container-list > .colors-9 > div {
+  background-color: #ffcaad;
+}
+.voiNo-container-list > .colors-10 > div {
+  background-color: #47f5da;
+}
+.mouse-block {
+  display: block;
+}
+.mouse-click::before {
+  background-color: #18f7b5;
+}
+/*# sourceMappingURL=main.css.map */
