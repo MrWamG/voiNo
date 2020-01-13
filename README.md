@@ -1,10 +1,3 @@
-# voiNo ~ Vue 版
-
-<div style="color: #fff; display: table;  line-height: 20px;">
-    <div style="float: left; padding: 0 8px; background: #35495e; border-radius: 3px 0 0 3px">VoiNo</div>
-    <div style="float: left; padding: 0 8px; background: #41b883; border-radius: 0 3px 3px 0">v1.0.0</div>
-</div>
-
 # 说明
 
 点击展开是变色放大还能拖拽的悬浮按钮你喜欢吗(现在还可以弹弹小曲)
